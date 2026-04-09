@@ -80,7 +80,7 @@ export default function UserList() {
             />
 
             {/* List */}
-            <Box sx={{ bgcolor: "#fff", borderRadius: "12px", border: "1px solid #eef0f5", overflow: "hidden", boxShadow: "0 1px 4px rgba(0,0,0,0.04)" }}>
+           <Box sx={{ bgcolor: "#fff", borderRadius: "12px", border: "1px solid #eef0f5", overflow: "auto", maxHeight: "calc(100vh - 140px)", boxShadow: "0 1px 4px rgba(0,0,0,0.04)" }}>
                 <List disablePadding>
                     {userList.map((user, index) => (
                         <Box key={user.id}>

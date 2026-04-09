@@ -1,11 +1,12 @@
 import { useState } from "react";
+import logo from "../assets/ReplayAiLogo.png";
 import {
     Box, Typography, List, ListItem, ListItemText,
     Drawer, Divider, Collapse,
 } from "@mui/material";
 import {
     Email, ExpandMore, ExpandLess, Business, Inbox,
-    Block, Logout, PersonOutline, SmartToy,
+    Block, Logout, PersonOutline,
 } from "@mui/icons-material";
 
 const navItems = [
@@ -45,19 +46,8 @@ export default function Sidebar() {
         >
             <Box>
                 {/* Logo */}
-                <Box sx={{ px: 2.5, py: 2.5, display: "flex", alignItems: "center", gap: 1 }}>
-                    <Box
-                        sx={{
-                            width: 34, height: 34, borderRadius: "50%",
-                            background: "linear-gradient(135deg, #00c9b1 0%, #0097a7 100%)",
-                            display: "flex", alignItems: "center", justifyContent: "center",
-                        }}
-                    >
-                        <SmartToy sx={{ color: "#fff", fontSize: 18 }} />
-                    </Box>
-                    <Typography sx={{ fontFamily: "'DM Sans', sans-serif", fontWeight: 700, fontSize: 15, color: "#1a2340", letterSpacing: 0.2 }}>
-                        REPLY AI
-                    </Typography>
+                <Box sx={{ px: 3.5, py: 3.5, display: "flex", alignItems: "center" }}>
+                   <img src={logo} alt="Reply AI" style={{ height: 60, objectFit: "contain" }} />
                 </Box>
 
                 <Divider sx={{ mb: 1 }} />

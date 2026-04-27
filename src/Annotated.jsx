@@ -9,6 +9,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import LogoutIcon from "@mui/icons-material/Logout";
 import DraftsIcon from "@mui/icons-material/Drafts";
 import { Button } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 import ReactQuill from "react-quill";
 import Quill from "quill";
 // import { useMemo } from "react";
@@ -21,6 +22,7 @@ function Annotated() {
     const drawerWidth = 220;
     const Sidebar = () => {
         const [openMail, setOpenMail] = useState(false);
+        const navigate = useNavigate();
 
         const [value, setValue] = useState("");
 
@@ -83,7 +85,7 @@ function Annotated() {
                         {/* Email dropdown */}
                         <ListItemButton
                             onClick={() => setOpenMail(!openMail)}
-                            sx={{ color: "#22A78E", mt: 2, "&:hover": { bgcolor: "#EAFAF7" }, onClick:"" }}
+                            sx={{ color: "#22A78E", mt: 2, "&:hover": { bgcolor: "#EAFAF7" } }}
                         >
                             <ListItemIcon sx={{ color: "#22A78E" }}>
                                 <MailIcon />
@@ -104,7 +106,6 @@ function Annotated() {
                                         color: "#22A78E",
                                         pl: 4,
                                         "&:hover": { bgcolor: "#EAFAF7" },
-                                        onClick:""
                                     }}
                                 >
                                     <ListItemText primary="Mailbox 1" slotProps={{ primary: { fontSize: 14 } }} />
@@ -115,7 +116,6 @@ function Annotated() {
                                         color: "#22A78E",
                                         pl: 4,
                                         "&:hover": { bgcolor: "#EAFAF7" },
-                                        onClick:""
                                     }}
                                 >
                                     <ListItemText primary="Mailbox 2" slotProps={{ primary: { fontSize: 14 } }} />
@@ -124,21 +124,21 @@ function Annotated() {
                         </Collapse>
 
                         {/* Other items */}
-                        <ListItemButton sx={{ color: "#B3B3B3", mt: 2, "&:hover": { bgcolor: "#EAFAF7" }, onClick:"" }}>
+                        <ListItemButton sx={{ color: "#B3B3B3", mt: 2, "&:hover": { bgcolor: "#EAFAF7" } }} onClick={() => navigate("AddUserModal")}>
                             <ListItemIcon sx={{ color: "#B3B3B3" }}>
                                 <PersonIcon />
                             </ListItemIcon>
                             <ListItemText primary="User List" slotProps={{ primary: { fontSize: 14 } }} />
                         </ListItemButton>
 
-                        <ListItemButton sx={{ color: "#B3B3B3", mt: 2, "&:hover": { bgcolor: "#EAFAF7" }, onClick:"CompanyDashboard" }}>
+                        <ListItemButton sx={{ color: "#B3B3B3", mt: 2, "&:hover": { bgcolor: "#EAFAF7" } }} onClick={() => navigate("CompanyDashboard")}>
                             <ListItemIcon sx={{ color: "#B3B3B3" }}>
                                 <ApartmentIcon />
                             </ListItemIcon>
                             <ListItemText primary="Companies" slotProps={{ primary: { fontSize: 14 } }} />
                         </ListItemButton>
 
-                        <ListItemButton sx={{ color: "#B3B3B3", mt: 2, "&:hover": { bgcolor: "#EAFAF7" }, onClick:"MailboxesPage" }}>
+                        <ListItemButton sx={{ color: "#B3B3B3", mt: 2, "&:hover": { bgcolor: "#EAFAF7" } }} onClick={() => navigate("MailboxesPage")}>
                             <ListItemIcon sx={{ color: "#B3B3B3" }}>
                                 <InboxIcon />
                             </ListItemIcon>
@@ -146,7 +146,7 @@ function Annotated() {
                         </ListItemButton>
 
                         
-                        <ListItemButton sx={{ color: "#B3B3B3", mt: 2, "&:hover": { bgcolor: "#EAFAF7" }, onClick:"BlocekedEmail" }}>
+                        <ListItemButton sx={{ color: "#B3B3B3", mt: 2, "&:hover": { bgcolor: "#EAFAF7" } }} onClick={() => navigate("BlockedEmail")}>
                             <ListItemIcon sx={{ color: "#B3B3B3" }}>
                                 <UnsubscribeIcon />
                             </ListItemIcon>
@@ -157,7 +157,7 @@ function Annotated() {
 
                     </List>
 
-                     <ListItemButton sx={{ color: "#B3B3B3", mt: 2, "&:hover": { bgcolor: "#EAFAF7" }, onClick:"Trash" }}>
+                     <ListItemButton sx={{ color: "#B3B3B3", mt: 2, "&:hover": { bgcolor: "#EAFAF7" } }} onClick={() => navigate("Trash")}>
                             <ListItemIcon sx={{ color: "#B3B3B3" }}>
                                 <DeleteIcon />
                             </ListItemIcon>

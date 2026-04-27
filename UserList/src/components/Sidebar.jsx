@@ -7,6 +7,7 @@ import {
 import {
     Email, ExpandMore, ExpandLess, Business, Inbox,
     Block, Logout, PersonOutline,
+    Delete,
 } from "@mui/icons-material";
 
 const navItems = [
@@ -20,6 +21,7 @@ const navItems = [
     { label: "Companies", icon: <Business fontSize="small" /> },
     { label: "Mailboxes", icon: <Inbox fontSize="small" /> },
     { label: "Blocked E-Mail", icon: <Block fontSize="small" /> },
+    { label: "Trash", icon: <Delete fontSize="small" /> },
 ];
 
 const DRAWER_WIDTH = 200;

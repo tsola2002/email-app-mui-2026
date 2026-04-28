@@ -8,7 +8,7 @@ import {
   Logout, Edit, Delete, Add, KeyboardArrowDown
 } from '@mui/icons-material';
 import Logo from '../assets/logo.png'; 
-// import CompanyView from './CompanyView'; 
+import CompanyView from './CompanyView'; 
 
 const drawerWidth = 260;
 const brandGreen = '#22A78E'; 
@@ -161,10 +161,10 @@ const CompanyDashboard = () => {
           ))}
         </Box>
 
-        {/* <CompanyView
+        <CompanyView
           open={isModalOpen} 
           handleClose={handleCloseModal} 
-        /> */}
+        />
       </Box>
     </Box>
   );

@@ -78,7 +78,7 @@ const CompanyView = ({ open, handleClose }) => {
         </Box>
       </DialogContent>
     </Dialog>
-  );
+  )
 };
 
 export default CompanyView;

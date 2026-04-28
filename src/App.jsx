@@ -12,7 +12,7 @@ import AllEmails from './AllEmails';
 // Filter tab pages (teammates):
 // import CouldNotRespond from './pages/email/CouldNotRespond';
 // import Draft from './pages/email/Draft';
-// import Annotated from './pages/email/Annotated';
+import Annotated from './Annotated';
 // import ManuallyResponded from './pages/email/ManuallyResponded';
 // import AutoRespond from './pages/email/AutoRespond';
 // import IgnoredDeleted from './pages/email/IgnoredDeleted';
@@ -43,7 +43,7 @@ function App() {
           {/* TEAMMATES: UNCOMMENT THESE AS YOU CREATE THE FILES */}
           {/* <Route path="could-not-respond" element={<CouldNotRespond />} /> */}
           {/* <Route path="draft" element={<Draft />} /> */}
-          {/* <Route path="annotated" element={<Annotated />} /> */}
+          <Route path="annotated" element={<Annotated />} />
           {/* <Route path="manually-responded" element={<ManuallyResponded />} /> */}
           {/* <Route path="auto-respond" element={<AutoRespond />} /> */}
           {/* <Route path="ignored-deleted" element={<IgnoredDeleted />} /> */}

@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { ThemeProvider, CssBaseline } from '@mui/material';
 import { Routes, Route } from 'react-router-dom';
@@ -5,6 +6,7 @@ import { theme } from './theme';
 import EmailPage from './EmailPage';
 import AllEmails from './AllEmails';
 import Annotated from './Annotated';
+import CompanyDashboard from './CompanyDashboard';
 
 // ============================================
 // TEAMMATES: UNCOMMENT AND IMPORT YOUR PAGES HERE
@@ -23,7 +25,7 @@ import Annotated from './Annotated';
 // import UserList from './pages/UserList';
 // import Companies from './pages/Companies';
 // import Mailboxes from './pages/Mailboxes';
-// import BlockedEmail from './pages/BlockedEmail';
+ import BlockedEmail from './BlockedEmail';
 // import { useState } from 'react'
 import Button from '@mui/material/Button';
 import './App.css'
@@ -64,9 +66,9 @@ function App() {
         {/* <Route path="/sales" element={<SalesPage />} /> */}
         {/* <Route path="/support" element={<SupportPage />} /> */}
         {/* <Route path="/user-list" element={<UserList />} /> */}
-        {/* <Route path="/companies" element={<Companies />} /> */}
+        <Route path="/companies" element={<CompanyDashboard />} />
         {/* <Route path="/mailboxes" element={<Mailboxes />} /> */}
-        {/* <Route path="/blocked-email" element={<BlockedEmail />} /> */}
+         <Route path="/blocked-email" element={<BlockedEmail />} /> 
         {/* <Route path="/trash" element={<Trash />} /> */}
       </Routes>
     </ThemeProvider>

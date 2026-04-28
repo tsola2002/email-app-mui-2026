@@ -4,6 +4,7 @@ import { Routes, Route } from 'react-router-dom';
 import { theme } from './theme';
 import EmailPage from './EmailPage';
 import AllEmails from './AllEmails';
+import Annotated from './Annotated';
 
 // ============================================
 // TEAMMATES: UNCOMMENT AND IMPORT YOUR PAGES HERE
@@ -12,7 +13,6 @@ import AllEmails from './AllEmails';
 // Filter tab pages (teammates):
 // import CouldNotRespond from './pages/email/CouldNotRespond';
 // import Draft from './pages/email/Draft';
-import Annotated from './Annotated';
 // import ManuallyResponded from './pages/email/ManuallyResponded';
 // import AutoRespond from './pages/email/AutoRespond';
 // import IgnoredDeleted from './pages/email/IgnoredDeleted';
@@ -24,9 +24,15 @@ import Annotated from './Annotated';
 // import Companies from './pages/Companies';
 // import Mailboxes from './pages/Mailboxes';
 // import BlockedEmail from './pages/BlockedEmail';
+// import { useState } from 'react'
+import Button from '@mui/material/Button';
+import './App.css'
 
 function App() {
+  // const [count, setCount] = useState(0)
+
   return (
+    <>
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <Routes>
@@ -62,7 +68,12 @@ function App() {
         {/* <Route path="/trash" element={<Trash />} /> */}
       </Routes>
     </ThemeProvider>
+  <Annotated />
+    </>
   );
+    
+    
+  
 }
 
 export default App;

@@ -19,7 +19,7 @@ import { useState } from "react";
 
 
 function Annotated() {
-    const drawerWidth = 220;
+    const drawerWidth = 70;
     const Sidebar = () => {
         const [openMail, setOpenMail] = useState(false);
         const navigate = useNavigate();
@@ -267,11 +267,12 @@ function Annotated() {
                                     color: "#fff",
                                     fontWeight: 600,
                                     fontSize: 16,
+                                    ml: 12,
                                 }}>
 
                             </Box>
 
-                            <Box sx={{ display: "flex", flexDirection: "column", lineHeight: 1.2,  }}>
+                            <Box sx={{ display: "flex", flexDirection: "column", lineHeight: 1.2, }}>
                                 <Typography sx={{ fontSize: 14, fontWeight: 500, color: "#2E3534", ml: -20 }}>
                                     Tarik Abaza
                                 </Typography>

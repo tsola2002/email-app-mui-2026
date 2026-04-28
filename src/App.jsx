@@ -68,7 +68,6 @@ function App() {
         {/* <Route path="/trash" element={<Trash />} /> */}
       </Routes>
     </ThemeProvider>
-  <Annotated />
     </>
   );
     

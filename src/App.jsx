@@ -1,124 +1,126 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
-import Button from '@mui/material/Button';
-import './App.css'
+import React from 'react';
+import { Routes, Route } from 'react-router-dom';
+import Layout from './components/Layout';
+import EmailHeader from './components/EmailHeader';
+import { useMailbox } from './context/MailboxContext';
+import { Box, Typography, Container } from '@mui/material';
 
-function App() {
-  const [count, setCount] = useState(0)
+// Import page components
+import UserList from './pages/UserList';
+import Companies from './pages/Companies';
+import Mailboxes from './pages/Mailboxes';
+import BlockedEmail from './pages/BlockedEmail';
+import Trash from './pages/Trash';
+import Logout from './pages/Logout';
+
+const originalEmail = {
+  id: 1,
+  from: "Tarik Abaza",
+  fromEmail: "tarik.abazaa@hotmail.com",
+  to: "Me",
+  subject: "AUTO RESPOND - Your Contract Is Started",
+  body: `Dear Sales Team,
+
+I've noticed a discrepancy in the latest invoice you sent us. It appears that we were charged twice for the same service. Can you please look into this as soon as possible?
+
+Thank you,
+John Doe
+Customer Support Lead
+Customer Inc.`
+};
+
+const responseText = `Dear Sales Team,
+
+I've noticed a discrepancy in the latest invoice you sent us. It appears that we were charged twice for the same service. Can you please look into this as soon as possible?
+
+Thank you,
+John Doe
+Customer Support Lead
+Customer Inc.`;
+
+// Mailbox 1 Component
+const Mailbox1 = () => {
+  const { mailbox1Deleted, deleteMailbox1 } = useMailbox();
+
+  const handleEmailClose = () => {
+    deleteMailbox1();
+  };
 
   return (
-    <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
-        </div>
-        <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.jsx</code> and save to test <code>HMR</code>
-          </p>
-          
-        </div>
-        <button
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
-        <Button variant="contained">Material UI Button</Button>
-      </section>
+    <Container maxWidth="md" sx={{ py: 3 }}>
+      {!mailbox1Deleted && (
+        <EmailHeader 
+          emailData={originalEmail} 
+          responseText={responseText}
+          onClose={handleEmailClose} 
+        />
+      )}
+      
+      {mailbox1Deleted && (
+        <Box sx={{ textAlign: 'center', py: 8 }}>
+          <Typography variant="h6" color="text.secondary">
+            No emails in this mailbox 📭
+          </Typography>
+          <Typography variant="body2" color="text.secondary" sx={{ mt: 1 }}>
+            Refresh the page to restore deleted emails
+          </Typography>
+        </Box>
+      )}
+    </Container>
+  );
+};
 
-      <div className="ticks"></div>
+// Mailbox 2 Component
+const Mailbox2 = () => {
+  const { mailbox2Deleted, deleteMailbox2 } = useMailbox();
 
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
+  const handleEmailClose = () => {
+    deleteMailbox2();
+  };
 
-      <div className="ticks"></div>
-      <section id="spacer"></section>
-    </>
-  )
+  return (
+    <Container maxWidth="md" sx={{ py: 3 }}>
+      {!mailbox2Deleted && (
+        <EmailHeader 
+          emailData={originalEmail} 
+          responseText={responseText}
+          onClose={handleEmailClose} 
+        />
+      )}
+      
+      {mailbox2Deleted && (
+        <Box sx={{ textAlign: 'center', py: 8 }}>
+          <Typography variant="h6" color="text.secondary">
+            No emails in this mailbox 📭
+          </Typography>
+          <Typography variant="body2" color="text.secondary" sx={{ mt: 1 }}>
+            Refresh the page to restore deleted emails
+          </Typography>
+        </Box>
+      )}
+    </Container>
+  );
+};
+
+function App() {
+  return (
+    <Layout>
+      <Routes>
+        {/* Email Routes */}
+        <Route path="/" element={<Mailbox1 />} />
+        <Route path="/mailbox1" element={<Mailbox1 />} />
+        <Route path="/mailbox2" element={<Mailbox2 />} />
+        
+        {/* Other Routes - Each has its own component for collaborators */}
+        <Route path="/users" element={<UserList />} />
+        <Route path="/companies" element={<Companies />} />
+        <Route path="/mailboxes" element={<Mailboxes />} />
+        <Route path="/blocked" element={<BlockedEmail />} />
+        <Route path="/trash" element={<Trash />} />
+        <Route path="/logout" element={<Logout />} />
+      </Routes>
+    </Layout>
+  );
 }
 
-export default App
+export default App;

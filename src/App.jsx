@@ -5,6 +5,7 @@ import { theme } from './theme';
 import EmailPage from './EmailPage';
 import AllEmails from './AllEmails';
 import Annotated from './Annotated';
+import CompanyDashboard from './CompanyDashboard';
 
 // ============================================
 // TEAMMATES: UNCOMMENT AND IMPORT YOUR PAGES HERE
@@ -64,7 +65,7 @@ function App() {
         {/* <Route path="/sales" element={<SalesPage />} /> */}
         {/* <Route path="/support" element={<SupportPage />} /> */}
         {/* <Route path="/user-list" element={<UserList />} /> */}
-        {/* <Route path="/companies" element={<Companies />} /> */}
+        <Route path="/companies" element={<CompanyDashboard />} />
         {/* <Route path="/mailboxes" element={<Mailboxes />} /> */}
         {/* <Route path="/blocked-email" element={<BlockedEmail />} /> */}
         {/* <Route path="/trash" element={<Trash />} /> */}

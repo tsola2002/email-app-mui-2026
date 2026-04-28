@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { ThemeProvider, CssBaseline } from '@mui/material';
 import { Routes, Route } from 'react-router-dom';
@@ -24,7 +25,7 @@ import CompanyDashboard from './CompanyDashboard';
 // import UserList from './pages/UserList';
 // import Companies from './pages/Companies';
 // import Mailboxes from './pages/Mailboxes';
-// import BlockedEmail from './pages/BlockedEmail';
+ import BlockedEmail from './BlockedEmail';
 // import { useState } from 'react'
 import Button from '@mui/material/Button';
 import './App.css'
@@ -67,7 +68,7 @@ function App() {
         {/* <Route path="/user-list" element={<UserList />} /> */}
         <Route path="/companies" element={<CompanyDashboard />} />
         {/* <Route path="/mailboxes" element={<Mailboxes />} /> */}
-        {/* <Route path="/blocked-email" element={<BlockedEmail />} /> */}
+         <Route path="/blocked-email" element={<BlockedEmail />} /> 
         {/* <Route path="/trash" element={<Trash />} /> */}
       </Routes>
     </ThemeProvider>

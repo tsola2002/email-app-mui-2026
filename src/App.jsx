@@ -27,6 +27,7 @@ import Annotated from './Annotated';
 // import { useState } from 'react'
 import Button from '@mui/material/Button';
 import './App.css'
+import CouldNotRespond from './CouldNotRespond';
 
 function App() {
   // const [count, setCount] = useState(0)
@@ -50,6 +51,7 @@ function App() {
           {/* <Route path="could-not-respond" element={<CouldNotRespond />} /> */}
           {/* <Route path="draft" element={<Draft />} /> */}
           <Route path="annotated" element={<Annotated />} />
+          <Route path="CouldNotRespond" element={<CouldNotRespond/>} />
           {/* <Route path="manually-responded" element={<ManuallyResponded />} /> */}
           {/* <Route path="auto-respond" element={<AutoRespond />} /> */}
           {/* <Route path="ignored-deleted" element={<IgnoredDeleted />} /> */}
@@ -68,6 +70,7 @@ function App() {
         {/* <Route path="/trash" element={<Trash />} /> */}
       </Routes>
     </ThemeProvider>
+      <CouldNotRespond />
     </>
   );
     

@@ -5,7 +5,7 @@ import Typography from "@mui/material/Typography"
 import Modal from "@mui/material/Modal"
 import TextField from "@mui/material/TextField"
 import IconButton from "@mui/material/IconButton"
-
+import Sidebar from "./components/Sidebar"
 
 export default function BlockedEmail() {
   const [showModal, setShowModal] = useState(false)
@@ -24,25 +24,9 @@ export default function BlockedEmail() {
   ]
 
   return (
-    <Box sx={{ display: "flex", minHeight: "100vh", backgroundColor: "#f5f5f5" }}>
+    <Box sx={{ display: "flex", minHeight: "100vh" }}>
 
-      {/* Sidebar */}
-      <Box sx={{ width: 200, backgroundColor: "#fff", display: "flex", flexDirection: "column", padding: "16px 0", borderRight: "1px solid #ddd" }}>
-        <Box sx={{ padding: "0 16px 20px", borderBottom: "1px solid #eee", marginBottom: "8px", marginLeft:"50px", textAlign: "center" }}>
-          <img src="/Logo (1).png" alt="Reply AI" style={{ width: "120px" }} />
-        </Box>
-        {["E-Mail", "User List", "Companies", "Mailboxes"].map((item) => (
-          <Typography key={item} sx={{ padding: "10px 16px", color: "#666", fontSize: "13px", cursor: "pointer", "&:hover": { backgroundColor: "#f5f5f5" } }}>
-            {item}
-          </Typography>
-        ))}
-        <Typography sx={{ padding: "10px 16px", color: "#4ecdc4", backgroundColor: "#f0fafa", fontSize: "13px" }}>
-          Blocked E-Mail
-        </Typography>
-        <Typography sx={{ marginTop: "auto", padding: "10px 16px", color: "#999", fontSize: "13px", cursor: "pointer" }}>
-          Log Out
-        </Typography>
-      </Box>
+      <Sidebar />
 
       {/* Main Content */}
       <Box sx={{ flex: 1, backgroundColor: "#fff" }}>
@@ -76,7 +60,7 @@ export default function BlockedEmail() {
                 <Typography sx={{ fontSize: "14px" }}>{email}</Typography>
                 <Box sx={{ display: "flex", gap: "4px" }}>
                   <IconButton size="small">✏️</IconButton>
-                <IconButton size="small">🗑️</IconButton>
+                  <IconButton size="small">🗑️</IconButton>
                 </Box>
               </Box>
             ))}

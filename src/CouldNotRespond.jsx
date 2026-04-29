@@ -20,7 +20,7 @@ import { useState } from "react";
 
 
 function CouldNotRespond() {
-  const drawerWidth = 220;
+  const drawerWidth = 100;
   const navigate = useNavigate();
 
   const Sidebar = () => {
@@ -233,18 +233,32 @@ function CouldNotRespond() {
 
 
     {/* Main Body Content */ }
-    < Box
-  sx = {{
-    ml: `${drawerWidth}px`,           // offset from sidebar
-      mt: "64px",                       // offset below AppBar
-        p: 3,
-          bgcolor: "#fff",                  // SINGLE background for the whole body
-            minHeight: "calc(100vh - 64px)", // full height minus AppBar
-              display: "flex",
-                flexDirection: "column",
-                  gap: 2,                           // spacing between rows
-          }
-}>
+       {/* Main Body Content */}
+    <Box
+      sx={{
+        // Reduce this value or the drawerWidth above to pull the page content further left
+        ml: `${drawerWidth}px`,           
+        mt: "64px",                       
+        p: 4,                             // Adjust internal padding for breathing room
+        bgcolor: "#fff",                  
+        minHeight: "calc(100vh - 64px)", 
+        display: "flex",
+        flexDirection: "column",
+        gap: 2,
+        boxSizing: "border-box",          // Prevents horizontal scroll
+        width: `calc(100% - ${drawerWidth}px)` 
+      }}
+    >
+      <Typography variant="h5" sx={{ fontWeight: 600, color: "#2E3534" }}>
+        Annotated Content
+      </Typography>
+      
+      <Typography variant="body1">
+        This content is now correctly aligned next to the sidebar.
+      </Typography>
+
+      {/* ReactQuill or other components go here */}
+    </Box>
 
   {/* 1️⃣ Email Header Row */ }
   < Box

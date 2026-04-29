@@ -11,11 +11,12 @@ import {
   Collapse
 } from '@mui/material';
 import Email from '@mui/icons-material/Email';
+import Support from '@mui/icons-material/Support';
 import People from '@mui/icons-material/People';
 import Business from '@mui/icons-material/Business';
 import MailOutline from '@mui/icons-material/MailOutline';
 import Block from '@mui/icons-material/Block';
-import TrashIcon from '@mui/icons-material/DeleteOutline';
+import DeleteIcon from '@mui/icons-material/Delete';
 import Logout from '@mui/icons-material/Logout';
 import KeyboardArrowDown from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
@@ -24,62 +25,62 @@ import logo from '../assets/logo.png';
 const Sidebar = () => {
   const location = useLocation();
   
-  // State for E-Mail dropdown
   const [emailDropdownOpen, setEmailDropdownOpen] = useState(true);
 
   const handleEmailClick = () => {
     setEmailDropdownOpen(!emailDropdownOpen);
   };
 
-  // ============================================
-  // CHANGE THESE PATHS TO MATCH YOUR ROUTES
-  // ============================================
   const emailDropdownItems = [
     { 
-      label: 'Mailbox 1', 
-      path: '/mailbox-1'    // <-- CHANGE THIS PATH
+      icon: () => <span style={{fontSize: 20, fontWeight: 'bold'}}>$</span>, 
+      label: 'Sales', 
+      path: '/sales'
     },
     { 
-      label: 'Mailbox 2', 
-      path: '/mailbox-2'    // <-- CHANGE THIS PATH
+      icon: Support, 
+      label: 'Support', 
+      path: '/support'
     },
   ];
 
-  // ============================================
-  // CHANGE THESE PATHS TO MATCH YOUR ROUTES
-  // ============================================
-  const menuItems = [
+  const otherMenuItems = [
     { 
       icon: People, 
       label: 'User List', 
-      path: '/user-list'      // <-- CHANGE THIS PATH
+      path: '/user-list'
     },
     { 
       icon: Business, 
       label: 'Companies', 
-      path: '/companies'      // <-- CHANGE THIS PATH
+      path: '/companies'
     },
     { 
       icon: MailOutline, 
       label: 'Mailboxes', 
-      path: '/mailboxes'      // <-- CHANGE THIS PATH
+      path: '/mailboxes'
     },
     { 
       icon: Block, 
       label: 'Blocked E-Mail', 
-      path: '/blocked-email'  // <-- CHANGE THIS PATH
+      path: '/blocked-email'
     },
-    { 
-      icon: TrashIcon, 
+      { 
+      icon: DeleteIcon, 
       label: 'Trash', 
-      path: '/trash'  // <-- CHANGE THIS PATH
-    }
+      path: '/trash' 
+    },
   ];
 
-  // Check if we're in the email section
   const isEmailSection = location.pathname === '/' || 
                          location.pathname.startsWith('/email') ||
-                         location.pathname.startsWith('/mailbox');
+                         location.pathname.startsWith('/all-emails') ||
+                         location.pathname.startsWith('/could-not-respond') ||
+                         location.pathname.startsWith('/draft') ||
+                         location.pathname.startsWith('/annotated') ||
+                         location.pathname.startsWith('/manually-responded') ||
+                         location.pathname.startsWith('/auto-respond') ||
+                         location.pathname.startsWith('/ignored-deleted');
 
   return (
     <Drawer
@@ -92,22 +93,22 @@ const Sidebar = () => {
           boxSizing: 'border-box',
           border: 'none',
           boxShadow: '2px 0 8px rgba(0,0,0,0.05)',
-          background: '#fff',
-          display: 'flex',
-          flexDirection: 'column'
+          background: '#fff'
         },
       }}
     >
-      {/* LOGO - Clickable */}
+      {/* Logo */}
       <Box 
         component={Link} 
         to="/"
         sx={{ 
           p: 3, 
           display: 'flex', 
-          justifyContent: 'center',
+          alignItems: 'center', 
+          gap: 2,
           textDecoration: 'none',
-          cursor: 'pointer'
+          cursor: 'pointer',
+          mb: -3,
         }}
       >
         <Box 
@@ -115,15 +116,16 @@ const Sidebar = () => {
           src={logo}
           alt="Reply AI Logo"
           sx={{ 
-            width: 150,
-            height: 80,
+            width: 180, 
+            height: 100,
             objectFit: 'contain'
           }}
         />
+        
       </Box>
 
-      <List sx={{ px: 2, flexGrow: 1 }}>
-        {/* E-MAIL DROPDOWN */}
+      <List sx={{ px: 2 }}>
+        {/* E-Mail Dropdown */}
         <ListItem
           onClick={handleEmailClick}
           sx={{
@@ -158,10 +160,11 @@ const Sidebar = () => {
           )}
         </ListItem>
 
-        {/* DROPDOWN ITEMS */}
+        {/* E-Mail Dropdown Items */}
         <Collapse in={emailDropdownOpen} timeout="auto" unmountOnExit>
           <List component="div" disablePadding>
             {emailDropdownItems.map((item, index) => {
+              const IconComponent = item.icon;
               const isActive = location.pathname === item.path;
               
               return (
@@ -171,7 +174,7 @@ const Sidebar = () => {
                   to={item.path}
                   sx={{
                     pl: 4,
-                    py: 0.8,
+                    py: 1,
                     borderRadius: '8px',
                     backgroundColor: isActive ? '#E0F7FA' : 'transparent',
                     color: isActive ? '#00C9B7' : '#64748b',
@@ -183,6 +186,12 @@ const Sidebar = () => {
                     mb: 0.5
                   }}
                 >
+                  <ListItemIcon sx={{ 
+                    color: isActive ? '#00C9B7' : '#94a3b8',
+                    minWidth: 36
+                  }}>
+                    <IconComponent />
+                  </ListItemIcon>
                   <ListItemText 
                     primary={item.label} 
                     primaryTypographyProps={{ 
@@ -196,8 +205,8 @@ const Sidebar = () => {
           </List>
         </Collapse>
 
-        {/* OTHER MENU ITEMS */}
-        {menuItems.map((item, index) => {
+        {/* Other Menu Items */}
+        {otherMenuItems.map((item, index) => {
           const IconComponent = item.icon;
           const isActive = location.pathname === item.path;
           
@@ -237,11 +246,11 @@ const Sidebar = () => {
         })}
       </List>
 
-      {/* LOGOUT */}
-      <Box sx={{ p: 2 }}>
+      {/* Logout */}
+      <Box sx={{ mt: 'auto', p: 2 }}>
         <ListItem
           component={Link}
-          to="/login"    // <-- CHANGE THIS PATH IF NEEDED
+          to="/login"
           sx={{
             borderRadius: '10px',
             color: '#64748b',

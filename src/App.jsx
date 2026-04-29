@@ -6,6 +6,8 @@ import { theme } from './theme';
 import EmailPage from './EmailPage';
 import AllEmails from './AllEmails';
 import Annotated from './Annotated';
+import UserList from './components/UserList';
+import AddUserModal from './components/AddUserModal';
 import CompanyDashboard from './CompanyDashboard';
 import Spam from './Spam';
 

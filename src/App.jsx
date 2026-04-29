@@ -1,4 +1,5 @@
 
+
 import React from 'react';
 import { ThemeProvider, CssBaseline } from '@mui/material';
 import { Routes, Route, BrowserRouter } from 'react-router-dom';
@@ -39,50 +40,50 @@ function App() {
 
   return (
     <>
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <Routes>
-        {/* ============================================
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <Routes>
+          {/* ============================================
             EMAIL SECTION WITH NESTED FILTER ROUTES
             ============================================ */}
-        <Route path="/" element={<EmailPage />}>
-          {/* Default / home shows AllEmails (your page) */}
-          <Route index element={<AllEmails />} />
-          
-          {/* Filter tab routes - teammates uncomment as they build */}
-          <Route path="all-emails" element={<AllEmails />} />
-          
-          {/* TEAMMATES: UNCOMMENT THESE AS YOU CREATE THE FILES */}
-          {/* <Route path="draft" element={<Draft />} /> */}
-          <Route path="annotated" element={<Annotated />} />
-          <Route path="spam" element={<Spam />} />
-          <Route path="could-not-respond" element={<CouldNotRespond/>} />
-           <Route path="/user-list" element={<UserList />} />
-          <Route path="/mailboxes" element={<Mailboxes />} />
-          {/* <Route path="manually-responded" element={<ManuallyResponded />} /> */}
-          {/* <Route path="auto-respond" element={<AutoRespond />} /> */}
-          {/* <Route path="ignored-deleted" element={<IgnoredDeleted />} /> */}
-        </Route>
+          <Route path="/" element={<EmailPage />}>
+            {/* Default / home shows AllEmails (your page) */}
+            <Route index element={<AllEmails />} />
 
-        {/* ============================================
+            {/* Filter tab routes - teammates uncomment as they build */}
+            <Route path="all-emails" element={<AllEmails />} />
+
+            {/* TEAMMATES: UNCOMMENT THESE AS YOU CREATE THE FILES */}
+            {/* <Route path="draft" element={<Draft />} /> */}
+            <Route path="annotated" element={<Annotated />} />
+            <Route path="spam" element={<Spam />} />
+            <Route path="could-not-respond" element={<CouldNotRespond />} />
+            <Route path="/user-list" element={<UserList />} />
+            <Route path="/mailboxes" element={<Mailboxes />} />
+            {/* <Route path="manually-responded" element={<ManuallyResponded />} /> */}
+            {/* <Route path="auto-respond" element={<AutoRespond />} /> */}
+            {/* <Route path="ignored-deleted" element={<IgnoredDeleted />} /> */}
+          </Route>
+
+          {/* ============================================
             SIDEBAR ROUTES 
             TEAMMATES: UNCOMMENT THESE AS YOU CREATE THE FILES
             ============================================ */}
-        {/* <Route path="/sales" element={<SalesPage />} /> */}
-        {/* <Route path="/support" element={<SupportPage />} /> */}
-        {/* <Route path="/user-list" element={<UserList />} /> */}
-        <Route path="/companies" element={<CompanyDashboard />} />
-        {/* <Route path="/mailboxes" element={<Mailboxes />} /> */}
-         <Route path="/blocked-email" element={<BlockedEmail />} /> 
-        {/* <Route path="/trash" element={<Trash />} /> */}
-      </Routes>
-    </ThemeProvider>
+          {/* <Route path="/sales" element={<SalesPage />} /> */}
+          {/* <Route path="/support" element={<SupportPage />} /> */}
+          {/* <Route path="/user-list" element={<UserList />} /> */}
+          <Route path="/companies" element={<CompanyDashboard />} />
+          {/* <Route path="/mailboxes" element={<Mailboxes />} /> */}
+          <Route path="/blocked-email" element={<BlockedEmail />} />
+          {/* <Route path="/trash" element={<Trash />} /> */}
+        </Routes>
+      </ThemeProvider>
       <CouldNotRespond />
     </>
   );
-    
-    
-  
+
+
+
 }
 
 export default App;

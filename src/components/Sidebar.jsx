@@ -7,7 +7,6 @@ import {
   ListItem, 
   ListItemIcon, 
   ListItemText, 
-  Typography,
   Collapse
 } from '@mui/material';
 import Email from '@mui/icons-material/Email';
@@ -65,7 +64,7 @@ const Sidebar = () => {
       label: 'Blocked E-Mail', 
       path: '/blocked-email'
     },
-      { 
+    { 
       icon: DeleteIcon, 
       label: 'Trash', 
       path: '/trash' 
@@ -121,7 +120,6 @@ const Sidebar = () => {
             objectFit: 'contain'
           }}
         />
-        
       </Box>
 
       <List sx={{ px: 2 }}>
@@ -146,13 +144,7 @@ const Sidebar = () => {
           }}>
             <Email />
           </ListItemIcon>
-          <ListItemText 
-            primary="E-Mail" 
-            primaryTypographyProps={{ 
-              fontSize: '0.9rem', 
-              fontWeight: isEmailSection ? 600 : 500 
-            }}
-          />
+          <ListItemText primary="E-Mail" />
           {emailDropdownOpen ? (
             <KeyboardArrowDown sx={{ fontSize: 18, color: '#00C9B7' }} />
           ) : (
@@ -165,7 +157,7 @@ const Sidebar = () => {
           <List component="div" disablePadding>
             {emailDropdownItems.map((item, index) => {
               const IconComponent = item.icon;
-              const isActive = location.pathname === item.path;
+              const isActive = location.pathname.startsWith(item.path);
               
               return (
                 <ListItem
@@ -192,13 +184,7 @@ const Sidebar = () => {
                   }}>
                     <IconComponent />
                   </ListItemIcon>
-                  <ListItemText 
-                    primary={item.label} 
-                    primaryTypographyProps={{ 
-                      fontSize: '0.85rem', 
-                      fontWeight: isActive ? 600 : 500 
-                    }}
-                  />
+                  <ListItemText primary={item.label} />
                 </ListItem>
               );
             })}
@@ -208,7 +194,7 @@ const Sidebar = () => {
         {/* Other Menu Items */}
         {otherMenuItems.map((item, index) => {
           const IconComponent = item.icon;
-          const isActive = location.pathname === item.path;
+          const isActive = location.pathname.startsWith(item.path);
           
           return (
             <ListItem
@@ -234,13 +220,7 @@ const Sidebar = () => {
               }}>
                 <IconComponent />
               </ListItemIcon>
-              <ListItemText 
-                primary={item.label} 
-                primaryTypographyProps={{ 
-                  fontSize: '0.9rem', 
-                  fontWeight: isActive ? 600 : 500 
-                }}
-              />
+              <ListItemText primary={item.label} />
             </ListItem>
           );
         })}
@@ -262,10 +242,7 @@ const Sidebar = () => {
           <ListItemIcon sx={{ color: '#94a3b8', minWidth: 40 }}>
             <Logout />
           </ListItemIcon>
-          <ListItemText 
-            primary="Log Out" 
-            primaryTypographyProps={{ fontSize: '0.9rem', fontWeight: 500 }}
-          />
+          <ListItemText primary="Log Out" />
         </ListItem>
       </Box>
     </Drawer>

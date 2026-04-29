@@ -1,79 +1,59 @@
 import React from 'react';
 import { ThemeProvider, CssBaseline } from '@mui/material';
 import { Routes, Route } from 'react-router-dom';
+
 import { theme } from './theme';
+
+// Layout / Parent Page
 import EmailPage from './EmailPage';
+
+// Email Pages (nested routes)
 import AllEmails from './AllEmails';
 import Annotated from './Annotated';
+import Spam from './Spam';
+import CouldNotRespond from './CouldNotRespond';
+import Mailboxes from './Mailboxes';
+
+// Standalone Pages
 import UserList from "./components/UserList/UserList";
+import CompanyDashboard from './CompanyDashboard';
+import BlockedEmail from './BlockedEmail';
 
-// ============================================
-// TEAMMATES: UNCOMMENT AND IMPORT YOUR PAGES HERE
-// ============================================
-
-// Filter tab pages (teammates):
-// import CouldNotRespond from './pages/email/CouldNotRespond';
-// import Draft from './pages/email/Draft';
-// import ManuallyResponded from './pages/email/ManuallyResponded';
-// import AutoRespond from './pages/email/AutoRespond';
-// import IgnoredDeleted from './pages/email/IgnoredDeleted';
-
-// Sidebar pages (teammates):
-// import SalesPage from './pages/sales/SalesPage';
-// import SupportPage from './pages/support/SupportPage';
-// import UserList from './pages/UserList';
-// import Companies from './pages/Companies';
-// import Mailboxes from './pages/Mailboxes';
-// import BlockedEmail from './pages/BlockedEmail';
-// import { useState } from 'react'
-import Button from '@mui/material/Button';
-import './App.css'
+import './App.css';
 
 function App() {
-  // const [count, setCount] = useState(0)
-
   return (
-    <>
     <ThemeProvider theme={theme}>
       <CssBaseline />
+
       <Routes>
-        {/* ============================================
-            EMAIL SECTION WITH NESTED FILTER ROUTES
-            ============================================ */}
+
+        {/* =========================
+            EMAIL LAYOUT ROUTES
+        ========================= */}
         <Route path="/" element={<EmailPage />}>
-          {/* Default / home shows AllEmails (your page) */}
+          {/* default page */}
           <Route index element={<AllEmails />} />
-          
-          {/* Filter tab routes - teammates uncomment as they build */}
+
+          {/* email tabs */}
           <Route path="all-emails" element={<AllEmails />} />
-          
-          {/* TEAMMATES: UNCOMMENT THESE AS YOU CREATE THE FILES */}
-          {/* <Route path="could-not-respond" element={<CouldNotRespond />} /> */}
-          {/* <Route path="draft" element={<Draft />} /> */}
           <Route path="annotated" element={<Annotated />} />
-          {/* <Route path="manually-responded" element={<ManuallyResponded />} /> */}
-          {/* <Route path="auto-respond" element={<AutoRespond />} /> */}
-          {/* <Route path="ignored-deleted" element={<IgnoredDeleted />} /> */}
+          <Route path="spam" element={<Spam />} />
+          <Route path="could-not-respond" element={<CouldNotRespond />} />
+          <Route path="mailboxes" element={<Mailboxes />} />
         </Route>
 
-        {/* ============================================
-            SIDEBAR ROUTES 
-            TEAMMATES: UNCOMMENT THESE AS YOU CREATE THE FILES
-            ============================================ */}
-        {/* <Route path="/sales" element={<SalesPage />} /> */}
-        {/* <Route path="/support" element={<SupportPage />} /> */}
-        {/* <Route path="/user-list" element={<UserList />} /> */}
-        {/* <Route path="/companies" element={<Companies />} /> */}
-        {/* <Route path="/mailboxes" element={<Mailboxes />} /> */}
-        {/* <Route path="/blocked-email" element={<BlockedEmail />} /> */}
-        {/* <Route path="/trash" element={<Trash />} /> */}
+        {/* =========================
+            STANDALONE PAGES
+        ========================= */}
+        <Route path="/user-list" element={<UserList />} />
+        <Route path="/companies" element={<CompanyDashboard />} />
+        <Route path="/blocked-email" element={<BlockedEmail />} />
+
       </Routes>
+
     </ThemeProvider>
-    </>
   );
-    
-    
-  
 }
 
 export default App;

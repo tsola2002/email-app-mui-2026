@@ -24,6 +24,7 @@ const filterTabs = [
   { label: 'Annotated', color: '#EC4899', path: '/annotated' },
   { label: 'Manually Responded', color: '#F97316', path: '/manually-responded' },
   { label: 'Auto Respond', color: '#10B981', path: '/auto-respond' },
+  { label: 'Spam', color: '#DC2626', path: '/spam' },
   { label: 'Ignored/Deleted', color: '#EF4444', path: '/ignored-deleted' }
 ];
 
@@ -49,7 +50,7 @@ const EmailPage = () => {
   const activeFilter = filterTabs.find(tab => currentPath.includes(tab.path))?.label || 'All E-Mails';
 
   return (
-    <Box sx={{ display: 'flex', minHeight: '100vh' }}>
+    <Box sx={{ display: 'flex', flexDirection: {xs: 'column', md: 'row'}, minHeight: '100vh' }}>
       <Sidebar />
       
       <Box sx={{ flexGrow: 1, p: 3, background: '#f8fafc' }}>
@@ -113,7 +114,7 @@ const EmailPage = () => {
         </Box>
 
         {/* FILTER TABS - ROUTED LINKS */}
-        <Box sx={{ mb: 3, display: 'flex', flexWrap: 'wrap' }}>
+        <Box sx={{ mb: 3, display: 'flex', flexWrap: 'wrap', gap: 1 }}>
           {filterTabs.map((tab) => (
             <FilterTab
               key={tab.label}
@@ -126,7 +127,7 @@ const EmailPage = () => {
         </Box>
 
         {/* Search and Filter Row */}
-        <Box sx={{ display: 'flex', gap: 80, mb: 1 }}>
+        <Box sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row' }, gap: 2, mb: 2 }}>
           <TextField
             select
             size="small"

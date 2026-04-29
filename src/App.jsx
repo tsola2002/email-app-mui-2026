@@ -1,3 +1,15 @@
+import React from 'react'
+import { Box, CssBaseline } from '@mui/material'
+import { createTheme, ThemeProvider } from '@mui/material/styles'
+import Sidebar from './components/Sidebar'
+import MailboxesPage from './components/MailboxesPage'
+
+const theme = createTheme({
+  typography: { fontFamily: 'Roboto, sans-serif' },
+  palette: { background: { default: '#f5f7fa' } },
+})
+
+export default function App() {
 
 import React from 'react';
 import { ThemeProvider, CssBaseline } from '@mui/material';
@@ -10,6 +22,7 @@ import CompanyDashboard from './CompanyDashboard';
 import Spam from './Spam';
 import IgnoredDeleted from './IgnoredDeleted';
 
+}
 // ============================================
 // TEAMMATES: UNCOMMENT AND IMPORT YOUR PAGES HERE
 // ============================================
@@ -37,9 +50,12 @@ function App() {
   // const [count, setCount] = useState(0)
 
   return (
-    <>
     <ThemeProvider theme={theme}>
       <CssBaseline />
+      <Box sx={{ display: 'flex', height: '100vh', overflow: 'hidden' }}>
+        <Sidebar active="Mailboxes" />
+        <MailboxesPage />
+      </Box>
       <Routes>
         {/* ============================================
             EMAIL SECTION WITH NESTED FILTER ROUTES
@@ -76,7 +92,7 @@ function App() {
         {/* <Route path="/trash" element={<Trash />} /> */}
       </Routes>
     </ThemeProvider>
-    </>
+    
   );
     
     
@@ -84,3 +100,5 @@ function App() {
 }
 
 export default App;
+
+  

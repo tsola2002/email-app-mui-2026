@@ -8,6 +8,7 @@ import AllEmails from './AllEmails';
 import Annotated from './Annotated';
 import CompanyDashboard from './CompanyDashboard';
 import Spam from './Spam';
+import LoginPage from './LoginPage'
 
 // ============================================
 // TEAMMATES: UNCOMMENT AND IMPORT YOUR PAGES HERE
@@ -43,7 +44,7 @@ function App() {
         {/* ============================================
             EMAIL SECTION WITH NESTED FILTER ROUTES
             ============================================ */}
-        <Route path="/" element={<EmailPage />}>
+        <Route path="/" element={<LoginPage />}>
           {/* Default / home shows AllEmails (your page) */}
           <Route index element={<AllEmails />} />
           

@@ -50,10 +50,9 @@ function App() {
           <Route path="all-emails" element={<AllEmails />} />
           
           {/* TEAMMATES: UNCOMMENT THESE AS YOU CREATE THE FILES */}
-          {/* <Route path="could-not-respond" element={<CouldNotRespond />} /> */}
+          <Route path="could-not-respond" element={<CouldNotRespond />} />
           {/* <Route path="draft" element={<Draft />} /> */}
           <Route path="annotated" element={<Annotated />} />
-          <Route path="CouldNotRespond" element={<CouldNotRespond/>} />
           {/* <Route path="manually-responded" element={<ManuallyResponded />} /> */}
           {/* <Route path="auto-respond" element={<AutoRespond />} /> */}
           {/* <Route path="ignored-deleted" element={<IgnoredDeleted />} /> */}
@@ -72,7 +71,6 @@ function App() {
         {/* <Route path="/trash" element={<Trash />} /> */}
       </Routes>
     </ThemeProvider>
-      <CouldNotRespond />
     </>
   );
     

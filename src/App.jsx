@@ -8,6 +8,7 @@ import AllEmails from './AllEmails';
 import Annotated from './Annotated';
 import CompanyDashboard from './CompanyDashboard';
 import Spam from './Spam';
+import IgnoredDeleted from './IgnoredDeleted';
 
 // ============================================
 // TEAMMATES: UNCOMMENT AND IMPORT YOUR PAGES HERE
@@ -59,7 +60,7 @@ function App() {
 
           {/* <Route path="manually-responded" element={<ManuallyResponded />} /> */}
           {/* <Route path="auto-respond" element={<AutoRespond />} /> */}
-          {/* <Route path="ignored-deleted" element={<IgnoredDeleted />} /> */}
+          <Route path="ignored-deleted" element={<IgnoredDeleted />} />
         </Route>
 
         {/* ============================================

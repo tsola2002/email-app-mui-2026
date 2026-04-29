@@ -31,7 +31,7 @@ import {
 } from '@mui/icons-material';
 
 import Logo from '../src/assets/Logo.png';
-// import CompanyView from './CompanyView';
+import CompanyView from './CompanyView';
 
 const drawerWidth = 260;
 const brandGreen = '#22A78E';
@@ -48,7 +48,7 @@ const CompanyDashboard = () => {
   const handleOpenModal = () => setIsModalOpen(true);
   const handleCloseModal = () => setIsModalOpen(false);
 
-  // Sidebar menu items
+
   const menuItems = [
     {
       text: 'E-Mail',
@@ -89,7 +89,7 @@ const CompanyDashboard = () => {
     >
       <CssBaseline />
 
-      {/* SIDEBAR */}
+     
       <Drawer
         variant="permanent"
         sx={{
@@ -104,7 +104,7 @@ const CompanyDashboard = () => {
           },
         }}
       >
-        {/* LOGO */}
+       
         <Box
           sx={{
             p: 4,
@@ -126,7 +126,7 @@ const CompanyDashboard = () => {
           />
         </Box>
 
-        {/* SIDEBAR MENU */}
+        
         <List sx={{ px: 1 }}>
           {menuItems.map((item) => {
             const isActive = location.pathname === item.path;
@@ -184,7 +184,7 @@ const CompanyDashboard = () => {
           })}
         </List>
 
-        {/* LOGOUT */}
+       
         <Box sx={{ mt: 'auto', mb: 3, px: 1 }}>
           <ListItemButton
             sx={{ borderRadius: '0 20px 20px 0' }}
@@ -198,7 +198,7 @@ const CompanyDashboard = () => {
         </Box>
       </Drawer>
 
-      {/* MAIN CONTENT */}
+     
       <Box
         component="main"
         sx={{
@@ -210,7 +210,7 @@ const CompanyDashboard = () => {
           flexDirection: 'column',
         }}
       >
-        {/* HEADER */}
+       
         <Box
           sx={{
             display: 'flex',
@@ -271,7 +271,7 @@ const CompanyDashboard = () => {
           </Box>
         </Box>
 
-        {/* NEW COMPANY BUTTON */}
+      
         <Box
           sx={{
             display: 'flex',
@@ -301,7 +301,7 @@ const CompanyDashboard = () => {
           </Button>
         </Box>
 
-        {/* COMPANY LIST */}
+       
         <Box
           sx={{
             display: 'flex',
@@ -361,11 +361,11 @@ const CompanyDashboard = () => {
           ))}
         </Box>
 
-        {/* MODAL */}
-        {/* <CompanyView
+      
+        <CompanyView
           open={isModalOpen}
           handleClose={handleCloseModal}
-        /> */}
+        />
       </Box>
     </Box>
   );

@@ -17,7 +17,7 @@ import Spam from './Spam';
 // import CouldNotRespond from './pages/email/CouldNotRespond';
 // import Draft from './pages/email/Draft';
 // import ManuallyResponded from './pages/email/ManuallyResponded';
-// import AutoRespond from './pages/email/AutoRespond';
+import AutoRespond from './pages/email/AutoRespond';
 // import IgnoredDeleted from './pages/email/IgnoredDeleted';
 
 // Sidebar pages (teammates):
@@ -57,7 +57,7 @@ function App() {
           <Route path="could-not-respond" element={<CouldNotRespond/>} />
           <Route path="/mailboxes" element={<Mailboxes />} />
           {/* <Route path="manually-responded" element={<ManuallyResponded />} /> */}
-          {/* <Route path="auto-respond" element={<AutoRespond />} /> */}
+          <Route path="auto-respond" element={<AutoRespond />} />
           {/* <Route path="ignored-deleted" element={<IgnoredDeleted />} /> */}
         </Route>
 

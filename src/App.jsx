@@ -20,6 +20,8 @@ import AllEmails from './AllEmails';
 import Annotated from './Annotated';
 import CompanyDashboard from './CompanyDashboard';
 import Spam from './Spam';
+import IgnoredDeleted from './IgnoredDeleted';
+
 }
 // ============================================
 // TEAMMATES: UNCOMMENT AND IMPORT YOUR PAGES HERE
@@ -67,13 +69,14 @@ function App() {
           
           {/* TEAMMATES: UNCOMMENT THESE AS YOU CREATE THE FILES */}
           {/* <Route path="draft" element={<Draft />} /> */}
+          {/* <Route path="draft" element={<Draft />} /> */}
           <Route path="annotated" element={<Annotated />} />
           <Route path="spam" element={<Spam />} />
           <Route path="could-not-respond" element={<CouldNotRespond/>} />
-          <Route path="/mailboxes" element={<Mailboxes />} />
+
           {/* <Route path="manually-responded" element={<ManuallyResponded />} /> */}
           {/* <Route path="auto-respond" element={<AutoRespond />} /> */}
-          {/* <Route path="ignored-deleted" element={<IgnoredDeleted />} /> */}
+          <Route path="ignored-deleted" element={<IgnoredDeleted />} />
         </Route>
 
         {/* ============================================
@@ -84,10 +87,18 @@ function App() {
         {/* <Route path="/support" element={<SupportPage />} /> */}
         {/* <Route path="/user-list" element={<UserList />} /> */}
         <Route path="/companies" element={<CompanyDashboard />} />
-        {/* <Route path="/mailboxes" element={<Mailboxes />} /> */}
+        <Route path="/mailboxes" element={<Mailboxes />} />
          <Route path="/blocked-email" element={<BlockedEmail />} /> 
         {/* <Route path="/trash" element={<Trash />} /> */}
       </Routes>
     </ThemeProvider>
-  )
+    
+  );
+    
+    
+  
 }
+
+export default App;
+
+  

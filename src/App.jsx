@@ -20,7 +20,7 @@ import AllEmails from './AllEmails';
 import Annotated from './Annotated';
 import CompanyDashboard from './CompanyDashboard';
 import Spam from './Spam';
-
+}
 // ============================================
 // TEAMMATES: UNCOMMENT AND IMPORT YOUR PAGES HERE
 // ============================================

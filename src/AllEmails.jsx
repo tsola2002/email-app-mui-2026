@@ -1,8 +1,13 @@
-import React from 'react';
-import EmailTable from './components/EmailTable';
+import React from 'react'
+import EmailPage from './EmailPage'
 
 const AllEmails = () => {
-  return <EmailTable />;
-};
+  return (
+    <div>
+      <EmailPage/>,
+      <EmailTable/>
+    </div>
+  )
+}
 
-export default AllEmails;
+export default AllEmails

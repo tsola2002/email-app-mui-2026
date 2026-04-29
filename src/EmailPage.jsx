@@ -18,47 +18,49 @@ import FilterTab from './components/FilterTab';
 
 // Filter tabs config - these are the routed tabs at the top
 const filterTabs = [
-  { label: 'All E-Mails', color: '#00C9B7', path: '/all-emails' },
-  { label: 'Could Not Respond', color: '#F59E0B', path: '/could-not-respond' },
-  { label: 'Draft', color: '#3B82F6', path: '/draft' },
-  { label: 'Annotated', color: '#EC4899', path: '/annotated' },
-  { label: 'Manually Responded', color: '#F97316', path: '/manually-responded' },
-  { label: 'Auto Respond', color: '#10B981', path: '/auto-respond' },
-  { label: 'Spam', color: '#DC2626', path: '/spam' },
-  { label: 'Ignored/Deleted', color: '#EF4444', path: '/ignored-deleted' }
+  { label: 'All E-Mails', color: '#00C9B7', path: '/EmailPage/all-emails' },
+  { label: 'Could Not Respond', color: '#F59E0B', path: '/EmailPage/could-not-respond' },
+  { label: 'Draft', color: '#3B82F6', path: '/EmailPage/draft' },
+  { label: 'Annotated', color: '#EC4899', path: '/EmailPage/annotated' },
+  { label: 'Manually Responded', color: '#F97316', path: '/EmailPage/manually-responded' },
+  { label: 'Auto Respond', color: '#10B981', path: '/EmailPage/auto-respond' },
+  { label: 'Spam', color: '#DC2626', path: '/EmailPage/spam' },
+  { label: 'Ignored/Deleted', color: '#EF4444', path: '/EmailPage/ignored-deleted' }
 ];
 
 const EmailPage = () => {
   const location = useLocation();
   const [page, setPage] = useState(1);
   const [rowsPerPage, setRowsPerPage] = useState(10);
-  
+
   // User dropdown menu state
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
-  
+
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
-  
+
   const handleClose = () => {
     setAnchorEl(null);
   };
 
   // Determine active filter based on current URL
   const currentPath = location.pathname;
-  const activeFilter = filterTabs.find(tab => currentPath.includes(tab.path))?.label || 'All E-Mails';
+  const activeFilter = filterTabs.find(tab =>
+    currentPath === tab.path
+  )?.label || 'All E-Mails';
 
   return (
-    <Box sx={{ display: 'flex', flexDirection: {xs: 'column', md: 'row'}, minHeight: '100vh' }}>
+    <Box sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row' }, minHeight: '100vh' }}>
       <Sidebar />
-      
+
       <Box sx={{ flexGrow: 1, p: 3, background: '#f8fafc' }}>
         {/* Header */}
-        <Box sx={{ 
-          display: 'flex', 
-          justifyContent: 'space-between', 
-          alignItems: 'center', 
+        <Box sx={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
           mb: 4,
           pb: 2,
           borderBottom: '1px solid #e2e8f0'
@@ -66,13 +68,13 @@ const EmailPage = () => {
           <Typography variant="h5" sx={{ fontWeight: 700, color: '#1e293b', letterSpacing: '-0.5px' }}>
             E-Mail
           </Typography>
-          
+
           {/* User Profile - Clickable Dropdown */}
           <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-            <Avatar 
-              sx={{ 
-                bgcolor: '#334155', 
-                width: 38, 
+            <Avatar
+              sx={{
+                bgcolor: '#334155',
+                width: 38,
                 height: 38,
                 fontSize: '0.9rem',
                 fontWeight: 600
@@ -88,11 +90,11 @@ const EmailPage = () => {
                 Admin
               </Typography>
             </Box>
-            
+
             <IconButton onClick={handleClick} size="small">
               <KeyboardArrowDown sx={{ color: '#64748b', fontSize: 20 }} />
             </IconButton>
-            
+
             <Menu
               anchorEl={anchorEl}
               open={open}
@@ -106,7 +108,8 @@ const EmailPage = () => {
               <MenuItem component={Link} to="/settings" onClick={handleClose}>
                 Settings
               </MenuItem>
-              <MenuItem component={Link} to="/login" onClick={handleClose}>
+              {/* Log Out returns to the login page at "/" */}
+              <MenuItem component={Link} to="/" onClick={handleClose}>
                 Log Out
               </MenuItem>
             </Menu>
@@ -132,7 +135,7 @@ const EmailPage = () => {
             select
             size="small"
             defaultValue="Filter By"
-            sx={{ 
+            sx={{
               width: 140,
               '& .MuiOutlinedInput-root': {
                 borderRadius: '10px',
@@ -149,7 +152,7 @@ const EmailPage = () => {
           <TextField
             placeholder="Search Listing"
             size="small"
-            sx={{ 
+            sx={{
               flexGrow: 1,
               '& .MuiOutlinedInput-root': {
                 borderRadius: '10px',
@@ -171,10 +174,10 @@ const EmailPage = () => {
         <Outlet />
 
         {/* Pagination */}
-        <Box sx={{ 
-          display: 'flex', 
-          justifyContent: 'space-between', 
-          alignItems: 'center', 
+        <Box sx={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
           mt: 3,
           px: 1
         }}>
@@ -187,7 +190,7 @@ const EmailPage = () => {
               size="small"
               value={rowsPerPage}
               onChange={(e) => setRowsPerPage(e.target.value)}
-              sx={{ 
+              sx={{
                 width: 70,
                 '& .MuiOutlinedInput-root': {
                   borderRadius: '8px',

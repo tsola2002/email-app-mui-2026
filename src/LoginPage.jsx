@@ -1,16 +1,14 @@
 import { Box, Button, TextField, Typography, Checkbox, FormControlLabel } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import bgPattern1 from "../assets/Group1.png";
-import bgPattern2 from "../assets/Group2.png";
-import logo from "../assets/Logo.png";
-import EmailPage from "./EmailPage";
+import bgPattern1 from "/src/assets/Group1.png";
+import bgPattern2 from "/src/assets/Group2.png";
+import logo from "/src/assets/Logo.png";
 
 export default function Login() {
   const navigate = useNavigate();
 
   const handleLogin = () => {
-    // no validation needed (as requested)
-    navigate("/email");
+    navigate("/EmailPage");
   };
 
   return (
@@ -100,7 +98,7 @@ export default function Login() {
         <Button
           fullWidth
           variant="contained"
-          onClick={EmailPage}
+          onClick={handleLogin}
           sx={{
             maxWidth: 320,
             bgcolor: "#14b8a6",

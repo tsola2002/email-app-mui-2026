@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { ThemeProvider, CssBaseline } from '@mui/material';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, BrowserRouter } from 'react-router-dom';
 import { theme } from './theme';
 import EmailPage from './EmailPage';
 import AllEmails from './AllEmails';
@@ -57,6 +57,7 @@ function App() {
           <Route path="annotated" element={<Annotated />} />
           <Route path="spam" element={<Spam />} />
           <Route path="could-not-respond" element={<CouldNotRespond/>} />
+           <Route path="/user-list" element={<UserList />} />
           <Route path="/mailboxes" element={<Mailboxes />} />
           {/* <Route path="manually-responded" element={<ManuallyResponded />} /> */}
           {/* <Route path="auto-respond" element={<AutoRespond />} /> */}

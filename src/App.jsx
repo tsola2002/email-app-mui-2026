@@ -7,6 +7,7 @@ import EmailPage from './EmailPage';
 import AllEmails from './AllEmails';
 import Annotated from './Annotated';
 import CompanyDashboard from './CompanyDashboard';
+import Spam from './Spam';
 
 // ============================================
 // TEAMMATES: UNCOMMENT AND IMPORT YOUR PAGES HERE
@@ -24,8 +25,8 @@ import CompanyDashboard from './CompanyDashboard';
 // import SupportPage from './pages/support/SupportPage';
 // import UserList from './pages/UserList';
 // import Companies from './pages/Companies';
-// import Mailboxes from './pages/Mailboxes';
- import BlockedEmail from './BlockedEmail';
+import Mailboxes from './Mailboxes';
+import BlockedEmail from './BlockedEmail';
 // import { useState } from 'react'
 import Button from '@mui/material/Button';
 import './App.css'
@@ -50,9 +51,12 @@ function App() {
           <Route path="all-emails" element={<AllEmails />} />
           
           {/* TEAMMATES: UNCOMMENT THESE AS YOU CREATE THE FILES */}
-          <Route path="could-not-respond" element={<CouldNotRespond />} />
+          {/* <Route path="draft" element={<Draft />} /> */}
           {/* <Route path="draft" element={<Draft />} /> */}
           <Route path="annotated" element={<Annotated />} />
+          <Route path="spam" element={<Spam />} />
+          <Route path="could-not-respond" element={<CouldNotRespond/>} />
+
           {/* <Route path="manually-responded" element={<ManuallyResponded />} /> */}
           {/* <Route path="auto-respond" element={<AutoRespond />} /> */}
           {/* <Route path="ignored-deleted" element={<IgnoredDeleted />} /> */}
@@ -66,7 +70,7 @@ function App() {
         {/* <Route path="/support" element={<SupportPage />} /> */}
         {/* <Route path="/user-list" element={<UserList />} /> */}
         <Route path="/companies" element={<CompanyDashboard />} />
-        {/* <Route path="/mailboxes" element={<Mailboxes />} /> */}
+        <Route path="/mailboxes" element={<Mailboxes />} />
          <Route path="/blocked-email" element={<BlockedEmail />} /> 
         {/* <Route path="/trash" element={<Trash />} /> */}
       </Routes>

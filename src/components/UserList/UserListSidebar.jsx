@@ -1,5 +1,5 @@
 import { useState } from "react";
-import logo from "../assets/ReplayAiLogo.png";
+import logo from "/src/assets/logo.png";
 import {
     Box, Typography, List, ListItem, ListItemText,
     Drawer, Divider, Collapse,

@@ -1,126 +1,84 @@
+
 import React from 'react';
+import { ThemeProvider, CssBaseline } from '@mui/material';
 import { Routes, Route } from 'react-router-dom';
-import Layout from './components/Layout';
-import EmailHeader from './components/EmailHeader';
-import { useMailbox } from './context/MailboxContext';
-import { Box, Typography, Container } from '@mui/material';
+import { theme } from './theme';
+import EmailPage from './EmailPage';
+import AllEmails from './AllEmails';
+import Annotated from './Annotated';
+import CompanyDashboard from './CompanyDashboard';
+import Spam from './Spam';
 
-// Import page components
-import UserList from './pages/UserList';
-import Companies from './pages/Companies';
-import Mailboxes from './pages/Mailboxes';
-import BlockedEmail from './pages/BlockedEmail';
-import Trash from './pages/Trash';
-import Logout from './pages/Logout';
+// ============================================
+// TEAMMATES: UNCOMMENT AND IMPORT YOUR PAGES HERE
+// ============================================
 
-const originalEmail = {
-  id: 1,
-  from: "Tarik Abaza",
-  fromEmail: "tarik.abazaa@hotmail.com",
-  to: "Me",
-  subject: "AUTO RESPOND - Your Contract Is Started",
-  body: `Dear Sales Team,
+// Filter tab pages (teammates):
+// import CouldNotRespond from './pages/email/CouldNotRespond';
+// import Draft from './pages/email/Draft';
+// import ManuallyResponded from './pages/email/ManuallyResponded';
+// import AutoRespond from './pages/email/AutoRespond';
+// import IgnoredDeleted from './pages/email/IgnoredDeleted';
 
-I've noticed a discrepancy in the latest invoice you sent us. It appears that we were charged twice for the same service. Can you please look into this as soon as possible?
-
-Thank you,
-John Doe
-Customer Support Lead
-Customer Inc.`
-};
-
-const responseText = `Dear Sales Team,
-
-I've noticed a discrepancy in the latest invoice you sent us. It appears that we were charged twice for the same service. Can you please look into this as soon as possible?
-
-Thank you,
-John Doe
-Customer Support Lead
-Customer Inc.`;
-
-// Mailbox 1 Component
-const Mailbox1 = () => {
-  const { mailbox1Deleted, deleteMailbox1 } = useMailbox();
-
-  const handleEmailClose = () => {
-    deleteMailbox1();
-  };
-
-  return (
-    <Container maxWidth="md" sx={{ py: 3 }}>
-      {!mailbox1Deleted && (
-        <EmailHeader 
-          emailData={originalEmail} 
-          responseText={responseText}
-          onClose={handleEmailClose} 
-        />
-      )}
-      
-      {mailbox1Deleted && (
-        <Box sx={{ textAlign: 'center', py: 8 }}>
-          <Typography variant="h6" color="text.secondary">
-            No emails in this mailbox 📭
-          </Typography>
-          <Typography variant="body2" color="text.secondary" sx={{ mt: 1 }}>
-            Refresh the page to restore deleted emails
-          </Typography>
-        </Box>
-      )}
-    </Container>
-  );
-};
-
-// Mailbox 2 Component
-const Mailbox2 = () => {
-  const { mailbox2Deleted, deleteMailbox2 } = useMailbox();
-
-  const handleEmailClose = () => {
-    deleteMailbox2();
-  };
-
-  return (
-    <Container maxWidth="md" sx={{ py: 3 }}>
-      {!mailbox2Deleted && (
-        <EmailHeader 
-          emailData={originalEmail} 
-          responseText={responseText}
-          onClose={handleEmailClose} 
-        />
-      )}
-      
-      {mailbox2Deleted && (
-        <Box sx={{ textAlign: 'center', py: 8 }}>
-          <Typography variant="h6" color="text.secondary">
-            No emails in this mailbox 📭
-          </Typography>
-          <Typography variant="body2" color="text.secondary" sx={{ mt: 1 }}>
-            Refresh the page to restore deleted emails
-          </Typography>
-        </Box>
-      )}
-    </Container>
-  );
-};
+// Sidebar pages (teammates):
+// import SalesPage from './pages/sales/SalesPage';
+// import SupportPage from './pages/support/SupportPage';
+// import UserList from './pages/UserList';
+// import Companies from './pages/Companies';
+import Mailboxes from './Mailboxes';
+import BlockedEmail from './BlockedEmail';
+// import { useState } from 'react'
+import Button from '@mui/material/Button';
+import './App.css'
+import CouldNotRespond from './CouldNotRespond';
 
 function App() {
+  // const [count, setCount] = useState(0)
+
   return (
-    <Layout>
+    <>
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
       <Routes>
-        {/* Email Routes */}
-        <Route path="/" element={<Mailbox1 />} />
-        <Route path="/mailbox1" element={<Mailbox1 />} />
-        <Route path="/mailbox2" element={<Mailbox2 />} />
-        
-        {/* Other Routes - Each has its own component for collaborators */}
-        <Route path="/users" element={<UserList />} />
-        <Route path="/companies" element={<Companies />} />
-        <Route path="/mailboxes" element={<Mailboxes />} />
-        <Route path="/blocked" element={<BlockedEmail />} />
-        <Route path="/trash" element={<Trash />} />
-        <Route path="/logout" element={<Logout />} />
+        {/* ============================================
+            EMAIL SECTION WITH NESTED FILTER ROUTES
+            ============================================ */}
+        <Route path="/" element={<EmailPage />}>
+          {/* Default / home shows AllEmails (your page) */}
+          <Route index element={<AllEmails />} />
+          
+          {/* Filter tab routes - teammates uncomment as they build */}
+          <Route path="all-emails" element={<AllEmails />} />
+          
+          {/* TEAMMATES: UNCOMMENT THESE AS YOU CREATE THE FILES */}
+          {/* <Route path="draft" element={<Draft />} /> */}
+          <Route path="annotated" element={<Annotated />} />
+          <Route path="spam" element={<Spam />} />
+          <Route path="could-not-respond" element={<CouldNotRespond/>} />
+          <Route path="/mailboxes" element={<Mailboxes />} />
+          {/* <Route path="manually-responded" element={<ManuallyResponded />} /> */}
+          {/* <Route path="auto-respond" element={<AutoRespond />} /> */}
+          {/* <Route path="ignored-deleted" element={<IgnoredDeleted />} /> */}
+        </Route>
+
+        {/* ============================================
+            SIDEBAR ROUTES 
+            TEAMMATES: UNCOMMENT THESE AS YOU CREATE THE FILES
+            ============================================ */}
+        {/* <Route path="/sales" element={<SalesPage />} /> */}
+        {/* <Route path="/support" element={<SupportPage />} /> */}
+        {/* <Route path="/user-list" element={<UserList />} /> */}
+        <Route path="/companies" element={<CompanyDashboard />} />
+        {/* <Route path="/mailboxes" element={<Mailboxes />} /> */}
+         <Route path="/blocked-email" element={<BlockedEmail />} /> 
+        {/* <Route path="/trash" element={<Trash />} /> */}
       </Routes>
-    </Layout>
+    </ThemeProvider>
+    </>
   );
+    
+    
+  
 }
 
 export default App;

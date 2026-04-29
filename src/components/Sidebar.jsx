@@ -1,251 +1,274 @@
 import React, { useState } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
-import Box from '@mui/material/Box';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
-import Typography from '@mui/material/Typography';
-import Collapse from '@mui/material/Collapse';
-import Divider from '@mui/material/Divider';
-import ExpandLess from '@mui/icons-material/ExpandLess';
-import ExpandMore from '@mui/icons-material/ExpandMore';
-import MailIcon from '@mui/icons-material/Mail';
-import PersonIcon from '@mui/icons-material/Person';
-import BusinessIcon from '@mui/icons-material/Business';
-import EmailIcon from '@mui/icons-material/Email';
-import BlockIcon from '@mui/icons-material/Block';
+import { Link, useLocation } from 'react-router-dom';
+import { 
+  Box, 
+  Drawer, 
+  List, 
+  ListItem, 
+  ListItemIcon, 
+  ListItemText, 
+  Typography,
+  Collapse
+} from '@mui/material';
+import Email from '@mui/icons-material/Email';
+import Support from '@mui/icons-material/Support';
+import People from '@mui/icons-material/People';
+import Business from '@mui/icons-material/Business';
+import MailOutline from '@mui/icons-material/MailOutline';
+import Block from '@mui/icons-material/Block';
 import DeleteIcon from '@mui/icons-material/Delete';
-import LogoutIcon from '@mui/icons-material/Logout';
-import InboxIcon from '@mui/icons-material/Inbox';
-import MarkunreadIcon from '@mui/icons-material/Markunread';
+import Logout from '@mui/icons-material/Logout';
+import KeyboardArrowDown from '@mui/icons-material/KeyboardArrowDown';
+import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
+import logo from '../assets/logo.png';
 
-const Sidebar = ({ isMobile = false }) => {
-  const navigate = useNavigate();
+const Sidebar = () => {
   const location = useLocation();
   
-  const [mailboxOpen, setMailboxOpen] = useState(true);
+  const [emailDropdownOpen, setEmailDropdownOpen] = useState(true);
 
-  const handleMailboxClick = () => {
-    setMailboxOpen(!mailboxOpen);
+  const handleEmailClick = () => {
+    setEmailDropdownOpen(!emailDropdownOpen);
   };
 
-  const handleNavigation = (path) => {
-    navigate(path);
-  };
+  const emailDropdownItems = [
+    { 
+      icon: () => <span style={{fontSize: 20, fontWeight: 'bold'}}>$</span>, 
+      label: 'Sales', 
+      path: '/sales'
+    },
+    { 
+      icon: Support, 
+      label: 'Support', 
+      path: '/support'
+    },
+  ];
 
-  // Check if currently on a mailbox page
-  const isOnMailboxPage = () => {
-    return location.pathname === '/mailbox1' || location.pathname === '/mailbox2';
-  };
+  const otherMenuItems = [
+    { 
+      icon: People, 
+      label: 'User List', 
+      path: '/user-list'
+    },
+    { 
+      icon: Business, 
+      label: 'Companies', 
+      path: '/companies'
+    },
+    { 
+      icon: MailOutline, 
+      label: 'Mailboxes', 
+      path: '/mailboxes'
+    },
+    { 
+      icon: Block, 
+      label: 'Blocked E-Mail', 
+      path: '/blocked-email'
+    },
+      { 
+      icon: DeleteIcon, 
+      label: 'Trash', 
+      path: '/trash' 
+    },
+  ];
 
-  // Check which mailbox is active
-  const isMailbox1Active = () => {
-    return location.pathname === '/mailbox1';
-  };
-
-  const isMailbox2Active = () => {
-    return location.pathname === '/mailbox2';
-  };
-
-  // Check other routes
-  const isActive = (path) => {
-    return location.pathname === path;
-  };
+  const isEmailSection = location.pathname === '/' || 
+                         location.pathname.startsWith('/email') ||
+                         location.pathname.startsWith('/all-emails') ||
+                         location.pathname.startsWith('/could-not-respond') ||
+                         location.pathname.startsWith('/draft') ||
+                         location.pathname.startsWith('/annotated') ||
+                         location.pathname.startsWith('/manually-responded') ||
+                         location.pathname.startsWith('/auto-respond') ||
+                         location.pathname.startsWith('/ignored-deleted');
 
   return (
-    <Box sx={{ height: '100%', display: 'flex', flexDirection: 'column', bgcolor: '#fff' }}>
-      {/* Logo Section */}
-      <Box sx={{ 
-        py: 4,
-        px: 2,
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        borderBottom: '1px solid #e0e0e0',
-        mb: 1
-      }}>
-        <img 
-          src="/reply-ai-logo.png" 
-          alt="REPLY AI" 
-          style={{ 
-            height: '80px',
-            width: 'auto',
+    <Drawer
+      variant="permanent"
+      sx={{
+        width: 240,
+        flexShrink: 0,
+        '& .MuiDrawer-paper': {
+          width: 240,
+          boxSizing: 'border-box',
+          border: 'none',
+          boxShadow: '2px 0 8px rgba(0,0,0,0.05)',
+          background: '#fff'
+        },
+      }}
+    >
+      {/* Logo */}
+      <Box 
+        component={Link} 
+        to="/"
+        sx={{ 
+          p: 3, 
+          display: 'flex', 
+          alignItems: 'center', 
+          gap: 2,
+          textDecoration: 'none',
+          cursor: 'pointer',
+          mb: -3,
+        }}
+      >
+        <Box 
+          component="img"
+          src={logo}
+          alt="Reply AI Logo"
+          sx={{ 
+            width: 180, 
+            height: 100,
             objectFit: 'contain'
-          }} 
-          onError={(e) => {
-            e.target.style.display = 'none';
-            e.target.nextSibling.style.display = 'block';
           }}
         />
-        <Typography 
-          variant="h4" 
-          sx={{ 
-            fontWeight: 700,
-            background: 'linear-gradient(135deg, #1a73e8 0%, #0d47a1 100%)',
-            backgroundClip: 'text',
-            WebkitBackgroundClip: 'text',
-            color: 'transparent',
-            display: 'none',
-            fontSize: '32px'
+        
+      </Box>
+
+      <List sx={{ px: 2 }}>
+        {/* E-Mail Dropdown */}
+        <ListItem
+          onClick={handleEmailClick}
+          sx={{
+            mb: 0.5,
+            borderRadius: '10px',
+            backgroundColor: isEmailSection ? '#E0F7FA' : 'transparent',
+            color: isEmailSection ? '#00C9B7' : '#64748b',
+            cursor: 'pointer',
+            '&:hover': {
+              backgroundColor: isEmailSection ? '#E0F7FA' : '#f1f5f9',
+            },
+            py: 1.2
           }}
         >
-          REPLY AI
-        </Typography>
-      </Box>
+          <ListItemIcon sx={{ 
+            color: isEmailSection ? '#00C9B7' : '#94a3b8',
+            minWidth: 40
+          }}>
+            <Email />
+          </ListItemIcon>
+          <ListItemText 
+            primary="E-Mail" 
+            primaryTypographyProps={{ 
+              fontSize: '0.9rem', 
+              fontWeight: isEmailSection ? 600 : 500 
+            }}
+          />
+          {emailDropdownOpen ? (
+            <KeyboardArrowDown sx={{ fontSize: 18, color: '#00C9B7' }} />
+          ) : (
+            <KeyboardArrowRight sx={{ fontSize: 18, color: '#94a3b8' }} />
+          )}
+        </ListItem>
 
-      <Box sx={{ flex: 1, overflowY: 'auto' }}>
-        <List sx={{ px: 2 }}>
-          {/* E-Mail Dropdown - Highlights when on any mailbox page */}
-          <ListItem disablePadding sx={{ display: 'block', mb: 1 }}>
-            <ListItemButton 
-              onClick={handleMailboxClick} 
-              sx={{ 
-                borderRadius: 2,
-                backgroundColor: isOnMailboxPage() ? 'rgba(25, 118, 210, 0.08)' : 'transparent',
+        {/* E-Mail Dropdown Items */}
+        <Collapse in={emailDropdownOpen} timeout="auto" unmountOnExit>
+          <List component="div" disablePadding>
+            {emailDropdownItems.map((item, index) => {
+              const IconComponent = item.icon;
+              const isActive = location.pathname === item.path;
+              
+              return (
+                <ListItem
+                  key={index}
+                  component={Link}
+                  to={item.path}
+                  sx={{
+                    pl: 4,
+                    py: 1,
+                    borderRadius: '8px',
+                    backgroundColor: isActive ? '#E0F7FA' : 'transparent',
+                    color: isActive ? '#00C9B7' : '#64748b',
+                    textDecoration: 'none',
+                    cursor: 'pointer',
+                    '&:hover': {
+                      backgroundColor: isActive ? '#E0F7FA' : '#f1f5f9',
+                    },
+                    mb: 0.5
+                  }}
+                >
+                  <ListItemIcon sx={{ 
+                    color: isActive ? '#00C9B7' : '#94a3b8',
+                    minWidth: 36
+                  }}>
+                    <IconComponent />
+                  </ListItemIcon>
+                  <ListItemText 
+                    primary={item.label} 
+                    primaryTypographyProps={{ 
+                      fontSize: '0.85rem', 
+                      fontWeight: isActive ? 600 : 500 
+                    }}
+                  />
+                </ListItem>
+              );
+            })}
+          </List>
+        </Collapse>
+
+        {/* Other Menu Items */}
+        {otherMenuItems.map((item, index) => {
+          const IconComponent = item.icon;
+          const isActive = location.pathname === item.path;
+          
+          return (
+            <ListItem
+              key={index}
+              component={Link}
+              to={item.path}
+              sx={{
+                mb: 0.5,
+                borderRadius: '10px',
+                backgroundColor: isActive ? '#E0F7FA' : 'transparent',
+                color: isActive ? '#00C9B7' : '#64748b',
+                textDecoration: 'none',
+                cursor: 'pointer',
+                '&:hover': {
+                  backgroundColor: isActive ? '#E0F7FA' : '#f1f5f9',
+                },
+                py: 1.2
               }}
             >
-              <ListItemIcon>
-                <InboxIcon color={isOnMailboxPage() ? 'primary' : 'action'} />
+              <ListItemIcon sx={{ 
+                color: isActive ? '#00C9B7' : '#94a3b8',
+                minWidth: 40
+              }}>
+                <IconComponent />
               </ListItemIcon>
               <ListItemText 
-                primary="E-Mail" 
-                sx={{ 
-                  color: isOnMailboxPage() ? 'primary.main' : 'text.primary'
+                primary={item.label} 
+                primaryTypographyProps={{ 
+                  fontSize: '0.9rem', 
+                  fontWeight: isActive ? 600 : 500 
                 }}
               />
-              {mailboxOpen ? <ExpandLess /> : <ExpandMore />}
-            </ListItemButton>
-            <Collapse in={mailboxOpen} timeout="auto" unmountOnExit>
-              <List component="div" disablePadding>
-                {/* Mailbox 1 - Highlights ONLY when on Mailbox 1 */}
-                <ListItemButton 
-                  sx={{ pl: 4, borderRadius: 2, ml: 2, mb: 0.5 }}
-                  onClick={() => handleNavigation('/mailbox1')}
-                  selected={isMailbox1Active()}
-                >
-                  <ListItemIcon>
-                    <MarkunreadIcon fontSize="small" />
-                  </ListItemIcon>
-                  <ListItemText primary="Mailbox 1" />
-                </ListItemButton>
-                {/* Mailbox 2 - Highlights ONLY when on Mailbox 2 */}
-                <ListItemButton 
-                  sx={{ pl: 4, borderRadius: 2, ml: 2 }}
-                  onClick={() => handleNavigation('/mailbox2')}
-                  selected={isMailbox2Active()}
-                >
-                  <ListItemIcon>
-                    <MarkunreadIcon fontSize="small" />
-                  </ListItemIcon>
-                  <ListItemText primary="Mailbox 2" />
-                </ListItemButton>
-              </List>
-            </Collapse>
-          </ListItem>
+            </ListItem>
+          );
+        })}
+      </List>
 
-          {/* User List - Highlights when active */}
-          <ListItem disablePadding sx={{ mb: 1 }}>
-            <ListItemButton 
-              onClick={() => handleNavigation('/users')} 
-              selected={isActive('/users')}
-              sx={{ borderRadius: 2 }}
-            >
-              <ListItemIcon>
-                <PersonIcon color={isActive('/users') ? 'primary' : 'action'} />
-              </ListItemIcon>
-              <ListItemText primary="User List" />
-            </ListItemButton>
-          </ListItem>
-
-          {/* Companies - Highlights when active */}
-          <ListItem disablePadding sx={{ mb: 1 }}>
-            <ListItemButton 
-              onClick={() => handleNavigation('/companies')} 
-              selected={isActive('/companies')}
-              sx={{ borderRadius: 2 }}
-            >
-              <ListItemIcon>
-                <BusinessIcon color={isActive('/companies') ? 'primary' : 'action'} />
-              </ListItemIcon>
-              <ListItemText primary="Companies" />
-            </ListItemButton>
-          </ListItem>
-
-          {/* Mailboxes - Highlights when active */}
-          <ListItem disablePadding sx={{ mb: 1 }}>
-            <ListItemButton 
-              onClick={() => handleNavigation('/mailboxes')} 
-              selected={isActive('/mailboxes')}
-              sx={{ borderRadius: 2 }}
-            >
-              <ListItemIcon>
-                <EmailIcon color={isActive('/mailboxes') ? 'primary' : 'action'} />
-              </ListItemIcon>
-              <ListItemText primary="Mailboxes" />
-            </ListItemButton>
-          </ListItem>
-
-          {/* Blocked E-Mail - Highlights when active */}
-          <ListItem disablePadding sx={{ mb: 1 }}>
-            <ListItemButton 
-              onClick={() => handleNavigation('/blocked')} 
-              selected={isActive('/blocked')}
-              sx={{ borderRadius: 2 }}
-            >
-              <ListItemIcon>
-                <BlockIcon color={isActive('/blocked') ? 'primary' : 'action'} />
-              </ListItemIcon>
-              <ListItemText primary="Blocked E-Mail" />
-            </ListItemButton>
-          </ListItem>
-
-          {/* Trash - Highlights when active */}
-          <ListItem disablePadding sx={{ mb: 1 }}>
-            <ListItemButton 
-              onClick={() => handleNavigation('/trash')} 
-              selected={isActive('/trash')}
-              sx={{ borderRadius: 2 }}
-            >
-              <ListItemIcon>
-                <DeleteIcon color={isActive('/trash') ? 'primary' : 'action'} />
-              </ListItemIcon>
-              <ListItemText primary="Trash" />
-            </ListItemButton>
-          </ListItem>
-        </List>
-      </Box>
-
-      {/* Log Out Button - NO HIGHLIGHT (stays red) */}
-      <Box sx={{ 
-        borderTop: '1px solid #e0e0e0',
-        p: 2,
-        bgcolor: '#fff'
-      }}>
-        <ListItem disablePadding>
-          <ListItemButton 
-            onClick={() => handleNavigation('/logout')} 
-            sx={{ 
-              borderRadius: 2, 
-              color: 'error.main',
-              '&:hover': {
-                bgcolor: 'error.light',
-                color: 'white',
-                '& .MuiListItemIcon-root': {
-                  color: 'white'
-                }
-              }
-            }}
-          >
-            <ListItemIcon sx={{ color: 'error.main' }}>
-              <LogoutIcon />
-            </ListItemIcon>
-            <ListItemText primary="Log Out" />
-          </ListItemButton>
+      {/* Logout */}
+      <Box sx={{ mt: 'auto', p: 2 }}>
+        <ListItem
+          component={Link}
+          to="/login"
+          sx={{
+            borderRadius: '10px',
+            color: '#64748b',
+            textDecoration: 'none',
+            cursor: 'pointer',
+            '&:hover': { backgroundColor: '#f1f5f9' }
+          }}
+        >
+          <ListItemIcon sx={{ color: '#94a3b8', minWidth: 40 }}>
+            <Logout />
+          </ListItemIcon>
+          <ListItemText 
+            primary="Log Out" 
+            primaryTypographyProps={{ fontSize: '0.9rem', fontWeight: 500 }}
+          />
         </ListItem>
       </Box>
-    </Box>
+    </Drawer>
   );
 };
 

@@ -7,8 +7,7 @@ import {
   IconButton
 } from '@mui/material';
 import Close from '@mui/icons-material/Close';
-import { statusConfig } from "../constanstes.js"; // Make sure this path matches your file
-
+import { statusConfig } from "../constal.js";
 const EmailDetail = ({ email }) => {
   // Default email data if none provided
   const defaultEmail = {

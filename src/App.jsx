@@ -9,7 +9,7 @@ import Annotated from './Annotated';
 import CompanyDashboard from './CompanyDashboard';
 import Spam from './Spam';
 import Login from './LoginPage';
-import Mailboxes from './Mailboxes';
+import Mailboxes from './Mailboxes.jsx';
 import BlockedEmail from './BlockedEmail';
 import CouldNotRespond from './CouldNotRespond';
 import IgnoredDeleted from './IgnoredDeleted';
